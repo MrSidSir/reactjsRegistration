@@ -1,6 +1,7 @@
 // src/StudentRegistrationForm.jsx
 
 import { useState } from 'react';
+import axios from "axios";
 
 const StudentRegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -16,10 +17,28 @@ const StudentRegistrationForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submitted Data:", formData);
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await axios.post("http://localhost:5000/api/students/newstudent", formData);
+    console.log("Server response:", response.data);
+    alert("Student registered successfully!");
+
+    // Reset form after submission
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      course: "",
+      gender: "",
+      message: "",
+    });
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("Something went wrong. Please try again.");
+  }
+};
 
   return (
     <div className="max-w-xl mx-auto bg-white shadow-2xl rounded-2xl p-8 mt-10">
