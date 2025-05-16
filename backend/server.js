@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const connectDB = require("./db/db")
 const studentRoutes = require("./routes/studentRoutes");
+const employeeRoutes = require("./routes/employeeRoutes");
 
 const app = express();
 const PORT = 5000;
@@ -14,7 +15,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/students", studentRoutes);
-
+app.use("/api/employee", employeeRoutes);
 // MongoDB Connection
 
 app.listen(PORT,

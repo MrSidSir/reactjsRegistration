@@ -8,6 +8,8 @@ function App() {
   return (
     <div>
       <StudentRegistrationForm />
+      
+    
     </div>
   );
 }
