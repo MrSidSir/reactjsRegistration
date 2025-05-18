@@ -1,7 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { createEmployee } = require('../controller/employeeController');
+const { createEmployee, getEmployees } = require("../controller/employeeController");
 
-router.post('/register', createEmployee);
+// POST route to register employee
+router.post("/register", createEmployee);
+
+// GET route to fetch all employees
+router.get("/", getEmployees); // e.g., /api/employee
 
 module.exports = router;
